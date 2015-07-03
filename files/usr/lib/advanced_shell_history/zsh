@@ -16,7 +16,15 @@
 #
 
 # Prevent errors from sourcing this file mor than once.
-[[ -n "${ASH_SESSION_ID}" ]] && return
+#
+# note that under some circumstances this can lead to problems,
+# so we explicitly check for the ash::* functions before returning
+if [[ -n "${ASH_SESSION_ID}" ]]; then
+  declare -f |grep -s 'ash::'
+  if [[ $? -eq 0 ]]; then
+    return
+  fi
+fi
 
 # Make sure we are running the shell we think we are running.
 if ! ps ho command $$ | grep -q "zsh"; then
