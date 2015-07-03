@@ -19,13 +19,17 @@
 #
 
 # Make sure there is a command logger.
+#
+# Note that we're ensuring that the default can be overridden by an
+# existing declaration
 if [[ -z "${ASH_LOG_BIN}" ]]; then
-  ASH_LOG_BIN=/usr/local/bin/_ash_log
+  if ! [[ -z "${ASH_CFG_LOG_BIN}" ]]; then
+    export ASH_LOG_BIN="${ASH_CFG_LOG_BIN}"
+  fi
 fi
 if ! [[ -x "${ASH_LOG_BIN}" ]]; then
   return
 fi
-
 
 # Create the directory holding the history database.
 if [[ ! -e "${ASH_CFG_HISTORY_DB}" ]]; then
