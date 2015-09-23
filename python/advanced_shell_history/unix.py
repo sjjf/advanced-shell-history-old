@@ -53,7 +53,7 @@ def _GetIfconfig():
         bufsize=8000,
         stdout=subprocess.PIPE).stdout
     return [x.lower().rstrip() for x in fd.readlines()]
-  except Error:
+  except Exception:
     return None
 
 
