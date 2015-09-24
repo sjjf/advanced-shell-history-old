@@ -23,6 +23,9 @@ TMP_FILE := ${TMP_DIR}.tar.gz
 MAN_DIR  := /usr/share/man/man1
 SRC_DEST := ..
 
+PYTHON_BIN_DIR := files/usr/local/bin
+PYTHON_LIB_DIR := files/usr/local/lib/advanced_shell_history
+
 BEGIN_URL := http://code.google.com/p/advanced-shell-history/wiki/HOWTO_Begin
 
 .PHONY: all build build_c build_python clean fixperms install install_c install_python man mrproper src_tarball src_tarball_minimal uninstall version
@@ -37,8 +40,8 @@ build_python: version
 	@ printf "\nCompiling source code...\n"
 	@ cd python && make
 	chmod 555 python/*.py python/advanced_shell_history/*.py
-	cp -af python/*.py files/usr/local/bin
-	cp -af python/advanced_shell_history/*.py files/usr/local/lib/advanced_shell_history/
+	mkdir -p ${PYTHON_BIN_DIR} && cp -af python/*.py ${PYTHON_BIN_DIR}
+	mkdir -p ${PYTHON_LIB_DIR} && cp -af python/advanced_shell_history/*.py ${PYTHON_LIB_DIR}
 	chmod 775 python/*.py python/*/*.py
 
 build_c: version
