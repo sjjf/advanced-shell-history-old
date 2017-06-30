@@ -1,4 +1,4 @@
-Advanced Shell History         http://code.google.com/p/advanced-shell-history/
+Advanced Shell History         https://github.com/sjjf/advanced-shell-history/wiki
 
 
 Save your command line history in a sqlite3 DB!
@@ -64,8 +64,8 @@ command.
 Caveats:
   * this is not meant to be a security auditing tool - it's for user
     convenience and meant to enhance shell builtin history.
-  * for bash users, this overrides your PROMPT_COMMAND and changes the 
-    default options of your builtin history.  Hopefully both are an 
+  * for bash users, this overrides your PROMPT_COMMAND and changes the
+    default options of your builtin history.  Hopefully both are an
     improvement.
   * for zsh users, this overrides your precmd function.  the shell script
     attempts to rename your previous precmd function and continue to hook
